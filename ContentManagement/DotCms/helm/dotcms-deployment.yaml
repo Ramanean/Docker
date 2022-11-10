@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.26.1 (a9d05d509)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: dotcms
+  name: dotcms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: dotcms
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.26.1 (a9d05d509)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/db_net: "true"
+        io.kompose.network/es_net: "true"
+        io.kompose.service: dotcms
+    spec:
+      containers:
+        - env:
+            - name: CATALINA_OPTS
+              value: '-Xmx1g '
+            - name: CUSTOM_STARTER_URL
+              value: https://repo.dotcms.com/artifactory/libs-release-local/com/dotcms/starter/20220713/starter-20220713.zip
+            - name: DB_BASE_URL
+              value: jdbc:postgresql://db/dotcms
+            - name: DB_PASSWORD
+              value: password
+            - name: DB_USERNAME
+              value: dotcmsdbuser
+            - name: DOT_ES_AUTH_BASIC_PASSWORD
+              value: admin
+            - name: DOT_ES_ENDPOINTS
+              value: http://elasticsearch:9200
+            - name: DOT_INITIAL_ADMIN_PASSWORD
+              value: admin
+          image: dotcms/dotcms:latest
+          name: dotcms
+          ports:
+            - containerPort: 8080
+            - containerPort: 8443
+          resources: {}
+          volumeMounts:
+            - mountPath: /data/shared
+              name: cms-shared
+      restartPolicy: Always
+      volumes:
+        - name: cms-shared
+          persistentVolumeClaim:
+            claimName: cms-shared
+status: {}
