@@ -4,11 +4,11 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: dbdata
-  name: dbdata
+  name: dbdata2
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 100Mi
+      storage: 900Mi
 status: {}
