@@ -1,0 +1,14 @@
+resources:
+ - cms-shared-persistentvolumeclaim.yaml
+ - dbdata-persistentvolumeclaim.yaml
+ - db-deployment.yaml
+ - db_net-networkpolicy.yaml
+ - dotcms-deployment.yaml
+ - dotcms-service.yaml
+ - elasticsearch-deployment.yaml
+ - elasticsearch-service.yaml
+ - esdata-persistentvolumeclaim.yaml
+ - es_net-networkpolicy.yaml
+
+
+
