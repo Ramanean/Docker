@@ -44,7 +44,7 @@ spec:
             - name: DOT_ES_AUTH_BASIC_PASSWORD
               value: admin
             - name: DOT_ES_ENDPOINTS
-              value: http://service.namespace.svc.cluster.local:9200
+              value: http://elasticsearch.default.svc.cluster.local:9200
             - name: DOT_INITIAL_ADMIN_PASSWORD
               value: admin
             - name: ES_ADMIN_PASSWORD
