@@ -43,8 +43,10 @@ spec:
           name: db
           resources: {}
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
+            - mountPath: /var/lib/postgresql/dotcmsdb
               name: dbdata
+          ports:
+            - containerPort: 5432
       restartPolicy: Always
       volumes:
         - name: dbdata
