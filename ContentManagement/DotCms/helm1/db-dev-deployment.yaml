@@ -25,6 +25,8 @@ spec:
         io.kompose.network/db_net: "true"
         io.kompose.service: db-dev
     spec:
+      securityContext:
+          fsGroup: 10001
       containers:
         - env:
             - name: ACCEPT_EULA
