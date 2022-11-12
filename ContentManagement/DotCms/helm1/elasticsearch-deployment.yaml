@@ -47,5 +47,5 @@ spec:
       volumes:
         - name: esdata
           persistentVolumeClaim:
-            claimName: esdata2
+            claimName: esdata
 status: {}
