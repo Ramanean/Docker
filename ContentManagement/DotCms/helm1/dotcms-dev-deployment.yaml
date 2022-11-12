@@ -49,7 +49,7 @@ spec:
               value: admin
             - name: ES_ADMIN_PASSWORD
               value: admin
-          image: dotcms/dotcms:22.01
+          image: dotcms/dotcms:latest
           name: dotcms-dev
           ports:
             - containerPort: 8080

@@ -3,12 +3,12 @@ kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: db-data-dev
-  name: db-data-dev
+    io.kompose.service: cms-shared
+  name: cms-shared
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 500Mi
+      storage: 2Gi
 status: {}
