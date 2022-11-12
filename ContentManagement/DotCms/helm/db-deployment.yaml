@@ -25,6 +25,8 @@ spec:
         io.kompose.network/db_net: "true"
         io.kompose.service: db
     spec:
+      securityContext:
+        fsGroup: 2000
       containers:
         - args:
             - postgres
