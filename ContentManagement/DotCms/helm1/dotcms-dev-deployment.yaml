@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.26.1 (a9d05d509)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: dotcms-dev
+  name: dotcms-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: dotcms-dev
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.26.1 (a9d05d509)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/db_net: "true"
+        io.kompose.network/es_net: "true"
+        io.kompose.service: dotcms-dev
+    spec:
+      securityContext:
+          fsGroup: 2000
+      containers:
+        - env:
+            - name: CATALINA_OPTS
+              value: ' -Xms1g -Xmx1g '
+            - name: DB_BASE_URL
+              value: jdbc:sqlserver://db-dev;databaseName=master
+            - name: DB_DRIVER
+              value: com.microsoft.sqlserver.jdbc.SQLServerDriver
+            - name: DB_PASSWORD
+              value: Test1234
+            - name: DB_USERNAME
+              value: sa
+            - name: DB_VALIDATION_QUERY
+              value: SELECT 1
+            - name: DOT_ES_AUTH_BASIC_PASSWORD
+              value: admin
+            - name: DOT_ES_ENDPOINTS
+              value: http://elasticsearch:9200
+            - name: DOT_INITIAL_ADMIN_PASSWORD
+              value: admin
+            - name: ES_ADMIN_PASSWORD
+              value: admin
+          image: dotcms/dotcms:22.01
+          name: dotcms-dev
+          ports:
+            - containerPort: 8080
+            - containerPort: 8000
+          resources: {}
+      restartPolicy: Always
+status: {}
