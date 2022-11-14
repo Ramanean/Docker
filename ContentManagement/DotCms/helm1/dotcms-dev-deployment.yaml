@@ -26,7 +26,7 @@ spec:
         io.kompose.service: dotcms-dev
     spec:
       securityContext:
-          fsGroup: 2000
+          fsGroup: 10000
       containers:
         - env:
             - name: CATALINA_OPTS

@@ -7,8 +7,8 @@ metadata:
   name: db-data-dev
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 2Gi
 status: {}
