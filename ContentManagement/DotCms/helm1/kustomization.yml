@@ -9,6 +9,7 @@ resources:
  - elasticsearch-deployment.yaml
  - esdata-persistentvolumeclaim.yaml
  - es_net-networkpolicy.yaml
+ - dotcms-dev-loadbalancer.yaml
 
 
 
