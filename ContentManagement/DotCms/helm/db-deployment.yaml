@@ -25,6 +25,8 @@ spec:
         io.kompose.network/dbnet: "true"
         io.kompose.service: db
     spec:
+      securityContext:
+          fsGroup:10000
       containers:
         - args:
             - postgres
@@ -39,7 +41,7 @@ spec:
               value: password
             - name: POSTGRES_USER
               value: dotcmsdbuser
-          image: postgres:12
+          image: postgres:14
           name: db
           resources: {}
           volumeMounts:

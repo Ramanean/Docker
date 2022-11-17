@@ -25,6 +25,8 @@ spec:
         io.kompose.network/es_net: "true"
         io.kompose.service: elasticsearch
     spec:
+      securityContext:
+          fsGroup:10000
       containers:
         - env:
             - name: ES_JAVA_OPTS
